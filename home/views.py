@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
-def store(request):
-    return render(request, 'home/store.html')
+def home(request):
+    return render(request, 'main.html')
 
 
 def cart(request):
