@@ -14,13 +14,18 @@
  
     </ul>
     <div class="form-inline my-2 my-lg-0">
-     	<a href="{% url 'login' %}"class="btn btn-warning">Login</a>
-     	
-     	<a href="{% url 'cart' %}" class="btn btn-outline-success" style="position: relative; margin-left: 10px;">
-    		<img  id="cart-icon" src="{% static 'images/cart.png' %}">
-    	</a>
-    	<p id="cart-total">0</p>
-
+      {% if user.is_authenticated %}
+        <span class="navbar-text text-white mr-3">Welcome, {{ user.username }}!</span>
+        <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+      {% else %}
+        <span class="navbar-text text-white mr-3">Welcome, Guest!</span>
+      <a href="{% url 'login' %}" class="btn btn-warning">Login</a>
+      
+      {% endif %}
+      <a href="{% url 'cart' %}" class="btn btn-outline-success" style="position: relative; margin-left: 10px;">
+        <img id="cart-icon" src="{% static 'images/cart.png' %}" alt="Cart">
+      </a>
+      <p  id="cart-total" class="text-white" style="position: absolute; top: 10px; right: 20px;">0</p>
     </div>
   </div>
 </nav>
