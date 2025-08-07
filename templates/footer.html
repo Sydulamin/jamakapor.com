@@ -1,0 +1,26 @@
+{% load static %}
+<footer style="background:#222; margin-top: 50px; color:#fff; padding: 30px 0; text-align:center;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <img src="{% static 'images/logo.png' %}" alt="Jama Kapor Logo" style="height:40px; margin-bottom:15px;">
+    <p style="margin: 10px 0;">
+      &copy; {{ year|default:"2025" }} Jama Kapor. All rights reserved.
+    </p>
+    <div style="margin: 15px 0;">
+      <a href="{% url 'home' %}" style="color:#fff; margin:0 10px; text-decoration:none;">Home</a> |
+      <a href="" style="color:#fff; margin:0 10px; text-decoration:none;">About</a> |
+      <a href="" style="color:#fff; margin:0 10px; text-decoration:none;">Contact</a>
+    </div>
+    <div style="margin-top: 10px;">
+      <a href="https://twitter.com/" target="_blank" style="color:#fff; margin:0 8px;">
+        <i class="fa fa-twitter"></i>
+      </a>
+      <a href="https://facebook.com/" target="_blank" style="color:#fff; margin:0 8px;">
+        <i class="fa fa-facebook"></i>
+      </a>
+      <a href="https://instagram.com/" target="_blank" style="color:#fff; margin:0 8px;">
+        <i class="fa fa-instagram"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+<!-- Make sure to include Font Awesome in your base template for social icons -->

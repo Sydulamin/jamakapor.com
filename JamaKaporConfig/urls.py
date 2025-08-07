@@ -5,11 +5,15 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('secret_superadmin/', admin.site.urls),
     path('', include('home.urls')),
+    path('authentication_backend/', include('authentication_backend.urls')),
+    
+    path('accounts/', include('allauth.urls')),
+
 ]
 
-
+# Serve static and media files in development
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

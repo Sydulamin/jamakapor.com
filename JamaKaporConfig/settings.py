@@ -3,22 +3,16 @@ import os
 
 from dotenv import load_dotenv
 
-# Load .env
 BASE_DIR = Path(__file__).resolve().parent.parent
 load_dotenv(BASE_DIR / '.env')
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = os.getenv("DEBUG", "False") == "False"
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 ALLOWED_HOSTS = []
 
-
-# Application definition
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -29,10 +23,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
-    'account',
+    'authentication_backend',
     'cart',
     'order',
     'product',
+    
+    # allauth
+    'django.contrib.sites',  # Required by allauth
+
+    # allauth apps
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # Providers (e.g., Google, GitHub, Facebook)
+    'allauth.socialaccount.providers.google',
 ]
 
 MIDDLEWARE = [
@@ -41,6 +46,11 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
+    'allauth.account.middleware.AccountMiddleware',
+    
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -57,10 +67,29 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                #-------------Social Login-----------------
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': ['profile', 'email'],
+        'AUTH_PARAMS': {'access_type': 'online'},
+    }
+}
+
+SOCIALACCOUNT_QUERY_EMAIL = True
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 WSGI_APPLICATION = 'JamaKaporConfig.wsgi.application'
 
@@ -144,15 +173,6 @@ JAZZMIN_SETTINGS = {
 
     "user_avatar": None,  # Or 'profile.image' if you have a custom profile
 
-    # "topmenu_links": [
-    #     {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
-    #     {"name": "Website", "url": "/", "new_window": True},
-    # ],
-
-    # "usermenu_links": [
-    #     {"model": "auth.user"},
-    #     {"name": "Support", "url": "https://yourwebsite.com/support", "new_window": True},
-    # ],
 
     "show_sidebar": True,
     "navigation_expanded": True,

@@ -1,0 +1,67 @@
+{% extends 'main.html' %}
+{% load socialaccount %}
+
+{% block title %} Jamakappor-login {% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <ul class="nav nav-tabs mb-4" id="authTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="true">Login</a>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="authTabContent">
+                <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
+                    <h2 class="text-center mb-4">Login</h2>
+                    <form method="POST" action="{% url 'login' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="login-username">Username</label>
+                            <input type="text" class="form-control" id="login-username" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" class="form-control" id="login-password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Login</button>
+                    </form>
+                </div>
+                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                    <h2 class="text-center mb-4">Register</h2>
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="register-username">Username</label>
+                            <input type="text" class="form-control" id="register-username" name="username" >
+                        </div>
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" class="form-control" id="register-email" name="email" >
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password1">Password</label>
+                            <input type="password" class="form-control" id="register-password1" name="password1">
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password2">Confirm Password</label>
+                            <input type="password" class="form-control" id="register-password2" name="password2" >
+                        </div>
+                        <button type="submit" class="btn btn-success btn-block">Register</button>
+
+                        
+                    </form>
+                    <p style="margin-top: 50px;">Login With Google: </p>
+                    <a href="{% provider_login_url 'google' %}">
+                        <img style="height: 100px; width: 100px;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2sSeQqjaUTuZ3gRgkKjidpaipF_l6s72lBw&s" alt="">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
