@@ -3,6 +3,10 @@ from . import views
 
 urlpatterns = [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1a2fe74802877d6e0e28ce48b891b158fc9cbf42
     path('', views.home, name='home'),
 =======
     path('', views.store, name='store'),
