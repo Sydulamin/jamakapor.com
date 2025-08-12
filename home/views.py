@@ -1,8 +1,21 @@
 from django.shortcuts import render
-
+from product.models import Category, Product
 
 def home(request):
-    return render(request, 'main.html')
+    req_cat = request.GET.get('cat')
+    if req_cat:
+        products = Product.objects.filter(category__id=req_cat)
+    else:
+        products = Product.objects.all()
+    
+    cate = Category.objects.all()
+    new_products = Product.objects.filter(new=True)
+    context = {
+        'cate': cate,
+        'products': new_products,
+        'all_products': products
+    }
+    return render(request, 'main.html', context)
 
 def store(request):
     return render(request, 'home/store.html')

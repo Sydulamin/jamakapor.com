@@ -21,79 +21,49 @@
 	</form>
 </div>
 </div>
-
+<div>
+	{% if messages %}
+		{% for message in messages %}
+			{{ message }}
+		{% endfor %}
+	{% endif %}
+</div>
 <div class="text-center my-4">
-<button class="btn btn-outline-primary mx-1">Boys</button>
-<button class="btn btn-outline-primary mx-1">Girls</button>
-<button class="btn btn-outline-primary mx-1">Accessories</button>
+{% for category in cate %}
+<a href="?cat={{category.id}}"><button class="btn btn-outline-primary mx-1">{{category.name}}</button></a>
+{% endfor %}
 </div>
 
 <!-- ✅ New Collection Grid -->
 <div class="container my-5">
 <h2 class="mb-4">New Collection</h2>
 <div class="row">
-	<div class="col-md-2 mb-2">
-	<img src="{% static 'images/img6.jpg' %}" class="img-fluid rounded" style="width: 150px; height: 150px; background-size: cover; background-position: center;">
-	</div>
-	<div class="col-md-2 mb-2">
-	<img src="{% static 'images/ing7.jpg' %}" class="img-fluid rounded" style="width: 150px; height: 150px; background-size: cover; background-position: center;">
-	</div>
-	<div class="col-md-2 mb-2">
-	<img src="{% static 'images/image3.webp' %}" class="img-fluid rounded" style="width: 150px; height: 150px; background-size: cover; background-position: center;">
-	</div>
 
-	<div class="col-md-2 mb-2">
-	<img src="{% static 'images/image4.jpg' %}" class="img-fluid rounded" style="width: 150px; height: 150px; background-size: cover; background-position: center;">
-	</div>
-
-	<div class="col-md-2 mb-2">
-	<img src="{% static 'images/img5.jpg' %}" class="img-fluid rounded" style="width: 150px; height: 150px; background-size: cover; background-position: center;">
-	</div>
-	<div class="col-md-2 mb-2">
-	<img src="{% static 'images/image8.jpg' %}" class="img-fluid rounded" style="width: 150px; height: 150px; background-size: cover; background-position: center;">
-	</div>
+{% for product in products %}
+<div class="col-md-2 mb-2">
+<img src="{{ product.image.url}}" class="img-fluid rounded" style="width: 150px; height: 150px; background-size: cover; background-position: center;">
+</div>	
+{% endfor %}
 </div>
 </div>
 
-<div class="row">
+<div class="row" style="width: 1300PX; margin-left: 80px;">
+	{% for i in all_products %}
 		<div class="col-lg-4">
-			<img class="thumbnail" src="{% static 'images/placeholder.png' %}">
+			<img class="thumbnail" src="{{i.image.url}}" style="width: 100%; height: 200px; background-size: cover; background-position: center;">
 			<div class="box-element product">
-				<h6><strong>Product</strong></h6>
+				<h6><strong>{{i.name}}</strong></h6>
 				<hr>
 
 				<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
 				<a class="btn btn-outline-success" href="#">View</a>
-				<h4 style="display: inline-block; float: right"><strong>$20</strong></h4>
+				<h4 style="display: inline-block; float: right"><strong>${{i.price}}</strong></h4>
 
 			</div>
 		</div>
+		{% endfor %}
 
-		<div class="col-lg-4">
-			<img class="thumbnail" src="{% static 'images/placeholder.png' %}">
-			<div class="box-element product">
-				<h6><strong>Product</strong></h6>
-				<hr>
-				
-				<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
-				<a class="btn btn-outline-success" href="#">View</a>
-				<h4 style="display: inline-block; float: right"><strong>$20</strong></h4>
-				
-			</div>
-		</div>
-
-		<div class="col-lg-4">
-			<img class="thumbnail" src="{% static 'images/placeholder.png' %}">
-			<div class="box-element product">
-				<h6><strong>Product</strong></h6>
-				<hr>
-
-				<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
-				<a class="btn btn-outline-success" href="#">View</a>
-				<h4 style="display: inline-block; float: right"><strong>$20</strong></h4>
-
-			</div>
-		</div>
+		
 	</div>
 {% endblock content %}    
 {% include 'footer.html' %}

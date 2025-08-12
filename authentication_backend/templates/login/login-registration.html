@@ -15,6 +15,13 @@
                     <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
                 </li>
             </ul>
+            <div>
+                {% if messages %}
+                    {% for message in messages %}
+                        {{ message }}
+                    {% endfor %}
+                {% endif %}
+            </div>
             <div class="tab-content" id="authTabContent">
                 <div class="tab-pane fade show active" id="login" role="tabpanel" aria-labelledby="login-tab">
                     <h2 class="text-center mb-4">Login</h2>
@@ -33,7 +40,7 @@
                 </div>
                 <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
                     <h2 class="text-center mb-4">Register</h2>
-                    <form method="POST" action="">
+                    <form method="POST" action="{% url 'register' %}">
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="register-username">Username</label>
