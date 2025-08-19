@@ -15,10 +15,14 @@
 		<h2 style="font-size: 2.2rem; margin-bottom: 12px; color: #222;">{{ product.name }}</h2>
 		<p style="font-size: 1.2rem; color: #666; margin-bottom: 18px;">{{ product.description }}</p>
 		<div style="font-size: 1.5rem; color: #1976d2; font-weight: bold; margin-bottom: 24px;">${{ product.price }}</div>
-		<form method="post" action="">
-			{% csrf_token %}
-			<button type="submit" style="background: #1976d2; color: #fff; border: none; padding: 12px 32px; border-radius: 6px; font-size: 1.1rem; cursor: pointer; transition: background 0.2s;">Add to Cart</button>
-		</form>
+		<form method="post" action="{% url 'add_cart' product.id %}">
+            {% csrf_token %}
+            <div style="display:flex; gap:12px; align-items:center;">
+                <label for="quantity" style="margin:0 8px 0 0; font-weight:600;">Qty</label>
+                <input id="quantity" name="quantity" type="number" min="1" value="1" style="width:80px; padding:8px; border-radius:6px; border:1px solid #ddd;">
+                <button type="submit" style="background: #1976d2; color: #fff; border: none; padding: 12px 32px; border-radius: 6px; font-size: 1.1rem; cursor: pointer; transition: background 0.2s;">Add to Cart</button>
+            </div>
+        </form>
 	</div>
 </div>
 {% endblock content %}

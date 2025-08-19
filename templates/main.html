@@ -55,8 +55,8 @@
 				<h6><strong>{{i.name}}</strong></h6>
 				<hr>
 
-				<button  class="btn btn-outline-secondary add-btn">Add to Cart</button>
-				<a class="btn btn-outline-success" href="{% url 'product_details' %}?id={{i.id}}">Viewq</a>
+				<a href="{% url 'add_cart' i.id %}"><button class="btn btn-outline-secondary add-btn">Add to Cart</button></a>
+				<a class="btn btn-outline-success" href="{% url 'product_details' %}?id={{i.id}}">View</a>
 				<h4 style="display: inline-block; float: right"><strong>${{i.price}}</strong></h4>
 
 			</div>
