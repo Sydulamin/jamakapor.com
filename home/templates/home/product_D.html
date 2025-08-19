@@ -1,0 +1,24 @@
+{% extends 'main.html' %}
+{% load socialaccount %}
+
+{% block title %} Product Details {% endblock %}
+
+{% block content %}
+
+<!-- Product Details View -->
+
+<div class="product-details-container" style="max-width: 900px; margin: 40px auto; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); border-radius: 12px; overflow: hidden; display: flex; flex-wrap: wrap;">
+	<div class="product-image" style="flex: 1 1 300px; min-width: 300px; background: #f9f9f9; display: flex; align-items: center; justify-content: center;">
+		<img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 100%; max-height: 350px; border-radius: 8px;">
+	</div>
+	<div class="product-info" style="flex: 2 1 400px; padding: 32px;">
+		<h2 style="font-size: 2.2rem; margin-bottom: 12px; color: #222;">{{ product.name }}</h2>
+		<p style="font-size: 1.2rem; color: #666; margin-bottom: 18px;">{{ product.description }}</p>
+		<div style="font-size: 1.5rem; color: #1976d2; font-weight: bold; margin-bottom: 24px;">${{ product.price }}</div>
+		<form method="post" action="">
+			{% csrf_token %}
+			<button type="submit" style="background: #1976d2; color: #fff; border: none; padding: 12px 32px; border-radius: 6px; font-size: 1.1rem; cursor: pointer; transition: background 0.2s;">Add to Cart</button>
+		</form>
+	</div>
+</div>
+{% endblock content %}
