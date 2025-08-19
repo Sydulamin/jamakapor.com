@@ -27,3 +27,11 @@ def cart(request):
 
 def checkout(request):
     return render(request, 'home/checkout.html')
+
+def pro_details(request):
+    product_id = request.GET.get('id')
+    product = Product.objects.get(id=product_id)
+    context = {
+        'product': product
+    }
+    return render(request, 'home/product_D.html', context)

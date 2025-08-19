@@ -1,14 +1,16 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 {% extends 'main.html' %}
 =======
-{% extends 'home/main.html' %}
+{% comment %} {% extends 'home/main.html' %}
 >>>>>>> 8ac853f... Templates config
 =======
 
-{% extends 'main.html' %}
+{% extends 'main.html' %} {% endcomment %}
+{% load socialaccount %}
 
->>>>>>> 1a2fe74802877d6e0e28ce48b891b158fc9cbf42
+{% block title %} Jamakappor-login {% endblock %}
+
+
 {% load static %}
 {% block content %}
 	<div class="row">
@@ -59,13 +61,7 @@
 			</div>
 		</div>
 	</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 
->>>>>>> 1a2fe74802877d6e0e28ce48b891b158fc9cbf42
+
 {% endblock %}
 	
-=======
-{% endblock content %}
->>>>>>> 8ac853f... Templates config
