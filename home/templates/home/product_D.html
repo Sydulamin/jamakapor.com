@@ -19,7 +19,7 @@
             {% csrf_token %}
             <div style="display:flex; gap:12px; align-items:center;">
                 <label for="quantity" style="margin:0 8px 0 0; font-weight:600;">Qty</label>
-                <input id="quantity" name="quantity" type="number" min="1" value="1" style="width:80px; padding:8px; border-radius:6px; border:1px solid #ddd;">
+                <input id="quantity" name="quantity" type="number" min="1" value="{{product_quantity}}" style="width:80px; padding:8px; border-radius:6px; border:1px solid #ddd;">
                 <button type="submit" style="background: #1976d2; color: #fff; border: none; padding: 12px 32px; border-radius: 6px; font-size: 1.1rem; cursor: pointer; transition: background 0.2s;">Add to Cart</button>
             </div>
         </form>
