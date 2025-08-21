@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from product.models import Category, Product
+from cart.models import Cart
 
 def home(request):
     req_cat = request.GET.get('cat')
@@ -30,8 +31,18 @@ def checkout(request):
 
 def pro_details(request):
     product_id = request.GET.get('id')
+    
     product = Product.objects.get(id=product_id)
+    
+    product_quantity=0
+    if request.user.is_authenticated:
+        cart_item = Cart.objects.filter(user=request.user, product=product).first()
+    if cart_item:
+        product_quantity = cart_item.quantity
+
+
     context = {
-        'product': product
+        'product': product,
+        'product_quantity':product_quantity
     }
     return render(request, 'home/product_D.html', context)
