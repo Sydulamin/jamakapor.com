@@ -5,3 +5,5 @@ pillow==11.3.0
 psycopg2-binary==2.9.10
 python-dotenv==1.1.1
 sqlparse==0.5.3
+django-allauth>=0.63.6
+
