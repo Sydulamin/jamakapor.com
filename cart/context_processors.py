@@ -4,6 +4,7 @@ def cart_context_processor(request):
     """
     Context processor to add cart information to the context.
     """
+    cart_length = 0
     if request.user.is_authenticated:
         cart_items = Cart.objects.filter(user=request.user)
         cart_length = len(Cart.objects.filter(user=request.user))
