@@ -7,6 +7,7 @@ from django.urls import reverse
 import uuid
 from django.views.decorators.csrf import csrf_exempt
 import logging
+from .models import Order
 
 logger = logging.getLogger(__name__)
 
@@ -66,6 +67,16 @@ def success(request):
     # log for debugging / record keeping
     logger.info("SSLCommerz success callback received: %s", payment_info)
     print(payment_info)
+    
+    Order.objects.create(
+        tran_id=payment_info.get('tran_id'),
+        val_id=payment_info.get('val_id'),
+        status=payment_info.get('status'),
+        amount=float(payment_info.get('amount', 0)),
+        currency=payment_info.get('currency', 'BDT'),
+        payment_info=payment_info,
+    )
+
 
     # TODO: verify val_id / verify_sign with SSLCommerz API if required,
     # record order in DB, update inventory, clear cart, send receipt email, etc.
